@@ -1,0 +1,1988 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaveNet - منصة حماية المجتمع الرقمي</title>
+    <!-- Meta Tags -->
+    <meta name="description" content="منصة SaveNet المتقدمة لحماية المجتمع الرقمي من التحريض الطائفي وخطاب الكراهية">
+    <meta name="keywords" content="حماية, مجتمع رقمي, تحريض طائفي, خطاب كراهية, SaveNet, منصة متقدمة">
+    <meta name="author" content="SaveNet">
+    <meta name="theme-color" content="#0f172a">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="SaveNet - المنصة المتقدمة لحماية المجتمع الرقمي">
+    <meta property="og:description" content="منصة متطورة لمكافحة التحريض الطائفي وخطاب الكراهية مع تأثيرات بصرية رائعة">
+    <meta property="og:image" content="https://i.imgur.com/placeholder.png">
+    <meta property="og:url" content="https://savenet.onrender.com">
+    
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='%238b5cf6'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap');
+        * {
+            font-family: 'Cairo', sans-serif;
+            scroll-behavior: smooth;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        
+        :root {
+            --primary: #8b5cf6;
+            --primary-light: #a78bfa;
+            --primary-dark: #7c3aed;
+            --secondary: #38bdf8;
+            --warning: #fbbf24;
+            --danger: #f87171;
+            --info: #34d399;
+            --dark-bg: #0f172a;
+            --text-dark: #f1f5f9;
+            --border-dark: #334155;
+            --glass-bg: rgba(15, 23, 42, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --neon-purple: #c7d2fe;
+            --neon-blue: #93c5fd;
+            --neon-pink: #f0abfc;
+            --shield-glow: rgba(139, 92, 246, 0.15);
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+            background-image: radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.05) 0%, transparent 20%),
+                            radial-gradient(circle at 90% 80%, rgba(52, 211, 153, 0.05) 0%, transparent 20%);
+        }
+        
+        /* خلفية الشبكة المتطورة */
+        .grid-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            opacity: 0.1;
+            background-image: 
+                linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: gridMove 20s linear infinite;
+        }
+        
+        @keyframes gridMove {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 40px 40px;
+            }
+        }
+        
+        /* خلفية النقاط المتألقة */
+        .particles-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        /* تأثيرات الظهور */
+        .appear {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .appear.appeared {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* تأثيرات الظهور للعناصر الرئيسية */
+        .hero-appear {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.2s ease, transform 1.2s ease;
+        }
+        
+        .hero-appear.appeared {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* تأثيرات الظهور للعناصر الجانبية */
+        .side-appear {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .side-appear.appeared {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* تأثيرات الظهور للعناصر الجانبية العكسية */
+        .side-appear-reverse {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .side-appear-reverse.appeared {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* تأثيرات الظهور البطيئة */
+        .slow-appear {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1.5s ease, transform 1.5s ease;
+        }
+        
+        .slow-appear.appeared {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* تأثيرات الظهور السريعة */
+        .fast-appear {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .fast-appear.appeared {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        /* تأثيرات الظهور مع الدوران */
+        .rotate-appear {
+            opacity: 0;
+            transform: rotate(-10deg) translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .rotate-appear.appeared {
+            opacity: 1;
+            transform: rotate(0) translateY(0);
+        }
+        
+        /* تأثيرات الظهور المتداخلة */
+        .stagger-appear {
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .stagger-appear.appeared {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* تأثيرات الظهور للعناصر المهمة */
+        .highlight-appear {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        
+        .highlight-appear.appeared {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        /* تأثيرات الظهور مع الوميض */
+        .pulse-appear {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        
+        .pulse-appear.appeared {
+            opacity: 1;
+            transform: scale(1);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        
+        /* تأثيرات الظهور مع الوميض المتدرج */
+        .glow-appear {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        
+        .glow-appear.appeared {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* تأثيرات الظهور للبطاقات */
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(139, 92, 246, 0.2), 0 10px 10px -5px rgba(139, 92, 246, 0.1);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+        
+        /* تأثيرات الزجاج */
+        .glass-effect {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+        }
+        
+        /* تأثيرات النص الزجاجي */
+        .glass-text {
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+        
+        .glass-text:after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon-purple), transparent);
+            opacity: 0.5;
+        }
+        
+        /* تأثيرات الزر الرئيسي */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 4px 15px -3px rgba(139, 92, 246, 0.4);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -3px rgba(139, 92, 246, 0.5);
+        }
+        
+        .btn-primary:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        
+        .btn-primary:hover:after {
+            opacity: 1;
+        }
+        
+        /* تأثيرات التوهج */
+        .glow-effect {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        /* تأثيرات النص المتألق */
+        .neon-text {
+            color: white;
+            position: relative;
+        }
+        
+        /* تأثيرات التحميل */
+        .loader {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* تأثيرات الحركة الدائمة */
+        .continuous-move {
+            animation: continuousMove 20s linear infinite;
+        }
+        
+        @keyframes continuousMove {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(5%, 5%); }
+            50% { transform: translate(10%, 0); }
+            75% { transform: translate(5%, -5%); }
+            100% { transform: translate(0, 0); }
+        }
+        
+        /* تأثيرات الوميض المتعدد */
+        .multi-pulse {
+            animation: multiPulse 3s infinite;
+        }
+        
+        @keyframes multiPulse {
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+        
+        /* تأثيرات التوهج الدائري */
+        .circular-glow {
+            position: relative;
+        }
+        
+        .circular-glow:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
+            z-index: -1;
+            animation: glowPulse 3s infinite;
+        }
+        
+        @keyframes glowPulse {
+            0% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.2); }
+            100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+        }
+        
+        /* تأثيرات الحركة التلقائية */
+        .auto-move {
+            animation: autoMove 15s ease-in-out infinite alternate;
+        }
+        
+        @keyframes autoMove {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(3%, 2%); }
+            50% { transform: translate(5%, -2%); }
+            75% { transform: translate(2%, -3%); }
+            100% { transform: translate(0, 0); }
+        }
+        
+        /* تأثيرات التفاعل مع العناصر */
+        .interactive {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .interactive:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(139, 92, 246, 0.2);
+        }
+        
+        /* تأثيرات التفاعل مع العناصر */
+        .glow-on-hover {
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .glow-on-hover:hover {
+            box-shadow: 0 0 15px var(--shield-glow);
+        }
+        
+        /* تأثيرات التفاعل مع العناصر */
+        .pulse-on-hover {
+            transition: transform 0.3s ease;
+        }
+        
+        .pulse-on-hover:hover {
+            animation: pulseHover 1s infinite;
+        }
+        
+        @keyframes pulseHover {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+        
+        /* تأثيرات التفاعل مع العناصر */
+        .tilt-on-hover {
+            transition: transform 0.3s ease;
+        }
+        
+        .tilt-on-hover:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(-5deg);
+        }
+        
+        /* تأثيرات التفاعل مع العناصر */
+        .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shimmer:after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(30deg);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: rotate(30deg) translateX(-100%); }
+            100% { transform: rotate(30deg) translateX(100%); }
+        }
+        
+        /* تأثيرات التفاعل مع العناصر */
+        .dynamic-glow-effect {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .dynamic-glow-effect:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(52, 211, 153, 0.1));
+            z-index: -1;
+            animation: dynamicGlowEffectMove 8s linear infinite;
+        }
+        
+        @keyframes dynamicGlowEffectMove {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            25% { transform: translate(-40%, -40%) rotate(90deg); }
+            50% { transform: translate(-50%, -50%) rotate(180deg); }
+            75% { transform: translate(-60%, -60%) rotate(270deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        /* تأثيرات التفاعل مع العناصر */
+        .hover-reveal {
+            overflow: hidden;
+        }
+        
+        .hover-reveal-content {
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+        
+        .hover-reveal:hover .hover-reveal-content {
+            transform: translateY(0);
+        }
+        
+        /* تأثيرات التفاعل مع العناصر */
+        .tab-button {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .tab-button:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .tab-button:hover:after {
+            width: 100%;
+        }
+        
+        .tab-button.active:after {
+            width: 100%;
+        }
+        
+        /* تأثيرات التفاعل مع العناصر */
+        .notification {
+            animation: slideIn 0.4s ease-out;
+            transform: translateX(100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .notification:hover {
+            transform: translateX(5px);
+        }
+        
+        /* تأثيرات التفاعل مع الحركة */
+        .tilt {
+            perspective: 1000px;
+        }
+        
+        .tilt-item {
+            transform-style: preserve-3d;
+            transition: transform 0.4s ease;
+        }
+        
+        /* تأثيرات التحميل المبتكرة */
+        .loading-dots {
+            display: inline-block;
+        }
+        
+        .loading-dots:after {
+            content: '.';
+            animation: dots 1.5s infinite;
+            display: inline-block;
+            width: 1em;
+            text-align: left;
+        }
+        
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+        
+        /* تأثيرات التمرير المتطورة */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-20px) translateX(-50%); }
+            60% { transform: translateY(-10px) translateX(-50%); }
+        }
+        
+        /* تأثيرات التفاعل مع العناصر */
+        .interactive-element {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .interactive-element:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* تأثيرات التحميل المتقدمة */
+        .loading-spinner {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(59, 130, 246, 0.3);
+            border-radius: 50%;
+            border-top-color: #3b82f6;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        /* تأثيرات التفاعل مع العناصر */
+        .interactive-card {
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transform: translateY(0);
+            will-change: transform, box-shadow;
+        }
+        
+        .interactive-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        /* تأثيرات الشعار */
+        .shield-logo {
+            position: relative;
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+        }
+        
+        .shield {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            clip-path: path("M40,5 L70,5 L75,20 L70,35 L40,75 L10,35 L5,20 L10,5 Z");
+            transition: all 0.4s ease;
+        }
+        
+        .shield:hover {
+            transform: scale(1.05);
+        }
+        
+        .shield-inner {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 50px;
+            height: 50px;
+            background: var(--dark-bg);
+            clip-path: path("M25,0 L50,5 L45,20 L40,35 L25,50 L10,35 L5,20 L0,5 Z");
+        }
+        
+        .shield-s {
+            position: absolute;
+            top: 25px;
+            left: 22px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: bold;
+            font-size: 24px;
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body class="theme-transition">
+    <!-- خلفية الشبكة المتطورة -->
+    <div class="grid-background"></div>
+    
+    <!-- خلفية النقاط المتألقة -->
+    <div class="particles-background">
+        <div class="particles" id="particles"></div>
+    </div>
+    
+    <!-- شبكة الخيوط المتطورة -->
+    <div class="thread-network" id="threadNetwork"></div>
+    
+    <!-- الشعار في منتصف الأعلى -->
+    <div class="flex justify-center items-center py-6">
+        <div class="shield-logo" id="shieldLogo">
+            <div class="shield">
+                <div class="shield-inner"></div>
+                <div class="shield-s">S</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- القسم الرئيسي -->
+    <section class="pt-12 pb-16 px-4 relative z-10">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <h1 class="text-5xl md:text-6xl font-bold leading-tight text-center lg:text-right">
+                        <span class="block neon-text glow-appear hero-appear" data-text="حماية المجتمع الرقمي">حماية المجتمع الرقمي</span>
+                        <span class="block neon-text glow-appear hero-appear" data-text="من التحريض الطائفي" style="animation-delay: 0.2s;">من التحريض الطائفي</span>
+                    </h1>
+                    <p class="text-xl text-gray-300 slow-appear text-center lg:text-right">
+                        SaveNet هي منصة متطورة لحماية المجتمع الرقمي من التحريض الطائفي وخطاب الكراهية على وسائل التواصل الاجتماعي. نستخدم تقنيات متقدمة لتحليل المحتوى وحماية المجتمع.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center lg:justify-end space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button id="getStartedBtn" class="btn-primary px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all multi-pulse interactive tilt-on-hover">
+                            <i class="fas fa-flag mr-2"></i> أبلغ عن محتوى ضار
+                        </button>
+                        <button id="learnMoreBtn" class="px-8 py-4 bg-transparent border border-gray-600 rounded-xl font-bold text-lg hover:bg-gray-800 transition-colors side-appear interactive pulse-on-hover">
+                            تعرف أكثر
+                        </button>
+                    </div>
+                    <div class="flex items-center justify-center lg:justify-end space-x-4 pt-4 side-appear">
+                        <div class="flex -space-x-3">
+                            <img src="https://ui-avatars.com/api/?name=أ&background=8b5cf6&color=fff" class="w-10 h-10 rounded-full border-2 border-purple-500/50" alt="مستخدم">
+                            <img src="https://ui-avatars.com/api/?name=ف&background=34d399&color=fff" class="w-10 h-10 rounded-full border-2 border-emerald-500/50" alt="مستخدم">
+                            <img src="https://ui-avatars.com/api/?name=م&background=fbbf24&color=000" class="w-10 h-10 rounded-full border-2 border-amber-500/50" alt="مستخدم">
+                            <img src="https://ui-avatars.com/api/?name=س&background=f87171&color=fff" class="w-10 h-10 rounded-full border-2 border-rose-500/50" alt="مستخدم">
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-200">أكثر من <span id="totalReports" class="text-purple-400 font-bold">1,250</span> بلاغ تم استلامه</p>
+                            <p class="text-sm text-gray-500">في جميع أنحاء سوريا</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative side-appear-reverse interactive tilt-on-hover">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-purple-500/10 to-indigo-600/10 rounded-2xl blur-2xl"></div>
+                    <div class="relative bg-gradient-to-br from-gray-900/50 to-gray-800/50 rounded-2xl p-6 shadow-xl glass-effect dynamic-glow-effect">
+                        <div class="bg-gray-900/70 rounded-xl p-6 glass-effect">
+                            <h2 class="text-2xl font-bold text-white mb-6 glass-text text-center">أبلغ عن محتوى ضار</h2>
+                            <form id="reportForm" class="space-y-4">
+                                <div class="relative shimmer">
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">اسمك</label>
+                                    <input type="text" id="reporterName" class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent glass-effect" placeholder="اسمك الكامل" required>
+                                    <div class="holographic-effect absolute inset-0 rounded-lg pointer-events-none"></div>
+                                </div>
+                                <div class="relative shimmer">
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">رقم هاتفك</label>
+                                    <input type="tel" id="reporterPhone" class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent glass-effect" placeholder="+963 11 123 4567" required>
+                                    <div class="holographic-effect absolute inset-0 rounded-lg pointer-events-none"></div>
+                                </div>
+                                <div class="relative shimmer">
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">نوع المحتوى</label>
+                                    <select id="category" class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent glass-effect" required>
+                                        <option value="">اختر نوع المحتوى</option>
+                                        <option value="sectarian_incitement">تحريض طائفي</option>
+                                        <option value="hate_speech">خطاب كراهية</option>
+                                        <option value="misinformation">معلومات مضللة</option>
+                                        <option value="cyberbullying">تنمر إلكتروني</option>
+                                        <option value="extremism">تطرف</option>
+                                        <option value="fake_accounts">حسابات وهمية</option>
+                                        <option value="violence_incitement">تحريض على العنف</option>
+                                        <option value="other">أخرى</option>
+                                    </select>
+                                    <div class="holographic-effect absolute inset-0 rounded-lg pointer-events-none"></div>
+                                </div>
+                                <div class="relative shimmer">
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">الوصف</label>
+                                    <textarea id="description" rows="4" class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent glass-effect" placeholder="صف المحتوى الضار..." required></textarea>
+                                    <div class="holographic-effect absolute inset-0 rounded-lg pointer-events-none"></div>
+                                </div>
+                                <div class="relative shimmer">
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">الرابط أو الموقع</label>
+                                    <input type="text" id="location" class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent glass-effect" placeholder="https://example.com/post/123" required>
+                                    <div class="holographic-effect absolute inset-0 rounded-lg pointer-events-none"></div>
+                                </div>
+                                <div class="relative shimmer">
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">صورة أو لقطة شاشة (اختياري)</label>
+                                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-dashed rounded-xl cursor-pointer hover:border-purple-500 transition-colors glass-effect" style="border-color: rgba(139, 92, 246, 0.3);">
+                                        <div class="space-y-1 text-center">
+                                            <i class="fas fa-cloud-upload-alt text-3xl text-gray-400"></i>
+                                            <div class="flex text-sm text-gray-400">
+                                                <label for="file-upload" class="relative cursor-pointer rounded-md font-medium text-purple-400 hover:text-purple-300 focus-within:outline-none">
+                                                    <span>اضغط لرفع ملف</span>
+                                                    <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                                                </label>
+                                                <p class="pl-1">أو قم بسحب الملف وإفلاته</p>
+                                            </div>
+                                            <p class="text-xs text-gray-500">PNG, JPG حتى 10MB</p>
+                                        </div>
+                                        <div class="holographic-effect absolute inset-0 rounded-xl pointer-events-none"></div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="humanVerification" class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-600 rounded" required>
+                                    <label for="humanVerification" class="mr-2 text-sm text-gray-300">
+                                        أنا لست روبوتًا وأؤكد أن البلاغ صحيح
+                                    </label>
+                                </div>
+                                <button type="submit" class="w-full btn-primary px-6 py-4 rounded-xl font-bold text-lg multi-layer-glow interactive pulse-on-hover">
+                                    <i class="fas fa-paper-plane mr-2"></i> إرسال البلاغ
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- القسم المميزات -->
+    <section id="features" class="py-16">
+        <div class="container mx-auto max-w-6xl px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold glass-text neon-text glow-appear mb-4">كيف تعمل SaveNet</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto slow-appear">
+                    منصة متطورة لإبلاغ عن المحتوى الضار مع عملية واضحة للتحقق والمعالجة
+                </p>
+            </div>
+            
+            <div class="relative">
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-purple-500/50 to-transparent -translate-y-1/2"></div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
+                    <div class="card p-6 rounded-xl text-center relative md:mb-16 multi-pulse interactive tilt-on-hover" style="animation-delay: 0s;">
+                        <div class="w-16 h-16 rounded-full bg-gray-800/70 flex items-center justify-center mx-auto mb-6 glass-effect circular-glow">
+                            <span class="text-2xl font-bold text-purple-400">1</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">الإبلاغ</h3>
+                        <p class="text-gray-400">
+                            قم بملء النموذج البسيط مع معلوماتك الأساسية ووصف المحتوى الضار
+                        </p>
+                    </div>
+                    
+                    <div class="card p-6 rounded-xl text-center relative md:mt-16 multi-pulse interactive tilt-on-hover" style="animation-delay: 0.2s;">
+                        <div class="w-16 h-16 rounded-full bg-gray-800/70 flex items-center justify-center mx-auto mb-6 glass-effect circular-glow">
+                            <span class="text-2xl font-bold text-purple-400">2</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">التحقق</h3>
+                        <p class="text-gray-400">
+                            نقوم بالتحقق من صحة الرقم عبر نظام تحليل متقدم دون الاتصال بك
+                        </p>
+                    </div>
+                    
+                    <div class="card p-6 rounded-xl text-center relative md:mb-16 multi-pulse interactive tilt-on-hover" style="animation-delay: 0.4s;">
+                        <div class="w-16 h-16 rounded-full bg-gray-800/70 flex items-center justify-center mx-auto mb-6 glass-effect circular-glow">
+                            <span class="text-2xl font-bold text-purple-400">3</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">المراجعة</h3>
+                        <p class="text-gray-400">
+                            يقوم فريق متخصص بمراجعة المحتوى وتحليله بدقة باستخدام الذكاء الاصطناعي
+                        </p>
+                    </div>
+                    
+                    <div class="card p-6 rounded-xl text-center relative md:mt-16 multi-pulse interactive tilt-on-hover" style="animation-delay: 0.6s;">
+                        <div class="w-16 h-16 rounded-full bg-gray-800/70 flex items-center justify-center mx-auto mb-6 glass-effect circular-glow">
+                            <span class="text-2xl font-bold text-purple-400">4</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">النتيجة</h3>
+                        <p class="text-gray-400">
+                            نقوم بإعلامك بالنتيجة عبر رسالة نصية خلال 24 ساعة
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                <button id="showDemoBtn" class="btn-primary px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center multi-layer-glow interactive pulse-on-hover">
+                    <i class="fas fa-info-circle mr-3"></i> معلومات إضافية
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- قسم الإحصائيات -->
+    <section id="statistics" class="py-16">
+        <div class="container mx-auto max-w-6xl px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold glass-text neon-text glow-appear mb-4">إحصائيات SaveNet</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto slow-appear">
+                    نتائج العمل في مكافحة التحريض الطائفي وخطاب الكراهية
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div class="card p-6 rounded-xl text-center multi-pulse interactive tilt-on-hover" style="animation-delay: 0s;">
+                    <div class="text-5xl font-bold text-purple-400 mb-4" id="totalReportsCount">2,450</div>
+                    <h3 class="text-xl font-semibold text-white mb-2">إجمالي البلاغات</h3>
+                    <p class="text-gray-400">تم استلامها من المجتمع</p>
+                </div>
+                
+                <div class="card p-6 rounded-xl text-center multi-pulse interactive tilt-on-hover" style="animation-delay: 0.2s;">
+                    <div class="text-5xl font-bold text-emerald-400 mb-4" id="resolvedReportsCount">1,875</div>
+                    <h3 class="text-xl font-semibold text-white mb-2">البلاغات المُعالجة</h3>
+                    <p class="text-gray-400">بنسبة نجاح 76.5%</p>
+                </div>
+                
+                <div class="card p-6 rounded-xl text-center multi-pulse interactive tilt-on-hover" style="animation-delay: 0.4s;">
+                    <div class="text-5xl font-bold text-amber-400 mb-4" id="pendingReportsCount">245</div>
+                    <h3 class="text-xl font-semibold text-white mb-2">البلاغات المعلقة</h3>
+                    <p class="text-gray-400">تحت المراجعة</p>
+                </div>
+                
+                <div class="card p-6 rounded-xl text-center multi-pulse interactive tilt-on-hover" style="animation-delay: 0.6s;">
+                    <div class="text-5xl font-bold text-cyan-400 mb-4" id="successRate">76.5%</div>
+                    <h3 class="text-xl font-semibold text-white mb-2">نسبة النجاح</h3>
+                    <p class="text-gray-400">من البلاغات المفيدة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- قسم المساهمين -->
+    <section class="py-16">
+        <div class="container mx-auto max-w-6xl px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold glass-text neon-text glow-appear mb-4">لماذا SaveNet؟</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto slow-appear">
+                    مزايا فريدة تجعل SaveNet الخيار الأمثل للإبلاغ عن المحتوى الضار
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card p-8 rounded-xl multi-pulse interactive tilt-on-hover" style="animation-delay: 0s;">
+                    <div class="w-16 h-16 rounded-2xl bg-gray-800/70 flex items-center justify-center mb-6 glass-effect circular-glow">
+                        <i class="fas fa-shield-alt text-2xl text-purple-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">الحماية والسرية</h3>
+                    <p class="text-gray-400">
+                        نضمن سرية هويتك وحماية معلوماتك الشخصية طوال عملية الإبلاغ والمراجعة
+                    </p>
+                </div>
+                
+                <div class="card p-8 rounded-xl multi-pulse interactive tilt-on-hover" style="animation-delay: 0.2s;">
+                    <div class="w-16 h-16 rounded-2xl bg-gray-800/70 flex items-center justify-center mb-6 glass-effect circular-glow">
+                        <i class="fas fa-robot text-2xl text-emerald-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">الذكاء الاصطناعي</h3>
+                    <p class="text-gray-400">
+                        نستخدم أنظمة ذكاء اصطناعي متقدمة لتحليل المحتوى وتحديد خطورته بدقة
+                    </p>
+                </div>
+                
+                <div class="card p-8 rounded-xl multi-pulse interactive tilt-on-hover" style="animation-delay: 0.4s;">
+                    <div class="w-16 h-16 rounded-2xl bg-gray-800/70 flex items-center justify-center mb-6 glass-effect circular-glow">
+                        <i class="fas fa-phone-volume text-2xl text-amber-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">تواصل مباشر</h3>
+                    <p class="text-gray-400">
+                        نتواصل معك مباشرة عبر الرسائل النصية للتأكد من صحة البلاغ
+                    </p>
+                </div>
+                
+                <div class="card p-8 rounded-xl multi-pulse interactive tilt-on-hover" style="animation-delay: 0.6s;">
+                    <div class="w-16 h-16 rounded-2xl bg-gray-800/70 flex items-center justify-center mb-6 glass-effect circular-glow">
+                        <i class="fas fa-clock text-2xl text-cyan-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">سرعة الاستجابة</h3>
+                    <p class="text-gray-400">
+                        نعمل على مراجعة البلاغات في أسرع وقت ممكن (خلال 24 ساعة)
+                    </p>
+                </div>
+                
+                <div class="card p-8 rounded-xl multi-pulse interactive tilt-on-hover" style="animation-delay: 0.8s;">
+                    <div class="w-16 h-16 rounded-2xl bg-gray-800/70 flex items-center justify-center mb-6 glass-effect circular-glow">
+                        <i class="fas fa-globe text-2xl text-rose-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">تغطية واسعة</h3>
+                    <p class="text-gray-400">
+                        نغطي جميع منصات التواصل الاجتماعي والمنصات الرقمية
+                    </p>
+                </div>
+                
+                <div class="card p-8 rounded-xl multi-pulse interactive tilt-on-hover" style="animation-delay: 1s;">
+                    <div class="w-16 h-16 rounded-2xl bg-gray-800/70 flex items-center justify-center mb-6 glass-effect circular-glow">
+                        <i class="fas fa-sync-alt text-2xl text-indigo-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">تحديثات فورية</h3>
+                    <p class="text-gray-400">
+                        تحصل على تحديثات فورية حول حالة بلاغك في الوقت الفعلي
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- القسم الأخير -->
+    <footer class="py-12">
+        <div class="container mx-auto max-w-6xl px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="text-center md:text-left">
+                    <div class="flex flex-col items-center md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-2 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-white font-bold">
+                            SN
+                        </div>
+                        <h3 class="text-xl font-bold glass-text">SaveNet</h3>
+                    </div>
+                    <p class="text-gray-400 mb-4 text-center md:text-left">
+                        منصة متطورة لحماية المجتمع الرقمي من التحريض الطائفي وخطاب الكراهية على وسائل التواصل الاجتماعي
+                    </p>
+                </div>
+                
+                <div class="text-center md:text-left">
+                    <h4 class="text-lg font-bold text-white mb-4 glass-text">روابط سريعة</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#features" class="text-gray-400 hover:text-purple-400 transition-colors interactive pulse-on-hover">كيف يعمل</a></li>
+                        <li><a href="#statistics" class="text-gray-400 hover:text-purple-400 transition-colors interactive pulse-on-hover">الإحصائيات</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400 transition-colors interactive pulse-on-hover">الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="text-center md:text-left">
+                    <h4 class="text-lg font-bold text-white mb-4 glass-text">الدعم</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400 transition-colors interactive pulse-on-hover">مركز المساعدة</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400 transition-colors interactive pulse-on-hover">الإبلاغ عن مشكلة</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400 transition-colors interactive pulse-on-hover">الاتصال بنا</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400 transition-colors interactive pulse-on-hover">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="text-center md:text-left">
+                    <h4 class="text-lg font-bold text-white mb-4 glass-text">الاتصال</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start justify-center md:justify-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-purple-400"></i>
+                            <span class="text-gray-400">دمشق، سوريا</span>
+                        </li>
+                        <li class="flex items-start justify-center md:justify-start">
+                            <i class="fas fa-phone mt-1 mr-3 text-purple-400"></i>
+                            <span class="text-gray-400">+963 11 123 4567</span>
+                        </li>
+                        <li class="flex items-start justify-center md:justify-start">
+                            <i class="fas fa-envelope mt-1 mr-3 text-purple-400"></i>
+                            <span class="text-gray-400">info@savenet.sy</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+                <p>© 2024 SaveNet. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- نموذج المعلومات الإضافية -->
+    <div id="infoModal" class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4 hidden">
+        <div class="card max-w-2xl w-full mx-auto rounded-xl overflow-hidden relative glass-effect interactive tilt-on-hover">
+            <div class="absolute top-4 right-4 z-10">
+                <button onclick="closeInfoModal()" class="text-gray-400 hover:text-white">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            
+            <div class="p-6 bg-gradient-to-r from-gray-900/70 to-gray-800/70">
+                <h2 class="text-2xl font-bold text-white">معلومات إضافية</h2>
+            </div>
+            
+            <div class="p-6 border-t border-gray-800">
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-xl font-semibold text-white mb-3 glass-text">عملية التحقق من الهوية</h3>
+                        <p class="text-gray-300 mb-4">
+                            لضمان مصداقية البلاغات، نقوم بالتحقق من هوية المُبلّغ عبر:
+                        </p>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2">
+                            <li>فحص الرقم عبر نظام تحليل متقدم لا يتطلب الاتصال بك</li>
+                            <li>الاعتماد على خوارزميات ذكاء اصطناعي للكشف عن البلاغات الزائفة</li>
+                            <li>التحقق من توافق الرقم مع قاعدة البيانات الرسمية</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-white mb-3 glass-text">كيف نتعامل مع البلاغات؟</h3>
+                        <p class="text-gray-300 mb-4">
+                            لدينا عملية محددة للتعامل مع البلاغات:
+                        </p>
+                        <ol class="list-decimal list-inside text-gray-300 space-y-2">
+                            <li>استلام البلاغ ورقم المُبلّغ</li>
+                            <li>التحقق من صحة الرقم عبر نظام تحليل متقدم</li>
+                            <li>تحليل المحتوى المبلغ عنه بواسطة الذكاء الاصطناعي والخبراء</li>
+                            <li>اتخاذ الإجراء المناسب مع المنصة الأصلية</li>
+                            <li>إبلاغ المُبلّغ بالنتيجة خلال 24-48 ساعة</li>
+                        </ol>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-white mb-3 glass-text">لماذا نطلب رقم الهاتف؟</h3>
+                        <p class="text-gray-300">
+                            رقم الهاتف ضروري للتحقق من هوية المُبلّغ والتأكد من أن البلاغ جاد وليس من روبوتات، كما يسمح لنا بالتواصل معك مباشرةً للحصول على معلومات إضافية إذا لزم الأمر.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mt-8 flex justify-end">
+                    <button onclick="closeInfoModal()" class="btn-primary px-6 py-2 rounded-lg font-medium multi-layer-glow interactive pulse-on-hover">
+                        فهمت، شكرًا
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- نموذج تأكيد الإرسال -->
+    <div id="confirmationModal" class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4 hidden">
+        <div class="card max-w-md w-full mx-auto rounded-xl overflow-hidden relative glass-effect interactive tilt-on-hover">
+            <div class="p-6 bg-gradient-to-r from-green-900/70 to-emerald-900/70">
+                <div class="flex items-center">
+                    <div class="w-12 h-12 rounded-full bg-emerald-900/50 flex items-center justify-center mr-4">
+                        <i class="fas fa-check-circle text-3xl text-emerald-400"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white">تم إرسال البلاغ بنجاح!</h2>
+                </div>
+            </div>
+            
+            <div class="p-6 border-t border-gray-800">
+                <p class="text-gray-300 mb-6">
+                    شكرًا لك على تعاونك! لقد تم استلام بلاغك وسنتواصل معك خلال 24 ساعة عبر رسالة نصية للتحقق من صحة البلاغ.
+                </p>
+                
+                <div class="bg-purple-900/30 rounded-lg p-4 mb-6">
+                    <p class="text-sm text-gray-300">
+                        <i class="fas fa-info-circle text-purple-400 mr-2"></i>
+                        نحرص على سرية هويتك وحماية معلوماتك الشخصية طوال العملية
+                    </p>
+                </div>
+                
+                <button onclick="closeConfirmationModal()" class="w-full btn-primary px-6 py-3 rounded-lg font-medium multi-layer-glow interactive pulse-on-hover">
+                    فهمت، شكرًا
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- نموذج كود الدخول -->
+    <div id="adminCodeModal" class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4 hidden">
+        <div class="card max-w-md w-full mx-auto rounded-xl overflow-hidden relative glass-effect interactive tilt-on-hover">
+            <div class="p-6 bg-gradient-to-r from-gray-900/70 to-gray-800/70">
+                <h2 class="text-2xl font-bold text-white">كود الدخول</h2>
+            </div>
+            
+            <div class="p-6 border-t border-gray-800">
+                <form id="adminCodeForm" class="space-y-4">
+                    <div class="relative shimmer">
+                        <label class="block text-sm font-medium text-gray-300 mb-1">أدخل كود الدخول</label>
+                        <input type="text" id="adminCode" class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent glass-effect" placeholder="أدخل الكود السري" required>
+                        <div class="holographic-effect absolute inset-0 rounded-lg pointer-events-none"></div>
+                    </div>
+                    <div class="text-center text-sm text-gray-400">
+                        <p>للحصول على الكود، اضغط 3 مرات على شعار SaveNet في الزاوية العلوية</p>
+                    </div>
+                    <button type="submit" class="w-full btn-primary px-6 py-3 rounded-lg font-medium multi-layer-glow interactive pulse-on-hover">
+                        التحقق من الكود
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- لوحة التحكم -->
+    <div id="adminPanel" class="fixed inset-0 bg-gray-900 z-50 hidden overflow-y-auto">
+        <div class="container mx-auto max-w-6xl px-4 py-8">
+            <div class="flex justify-between items-center mb-8">
+                <div>
+                    <h1 class="text-3xl font-bold text-white">لوحة تحكم SaveNet</h1>
+                    <p class="text-gray-400">إدارة البلاغات</p>
+                </div>
+                <button onclick="closeAdminPanel()" class="px-4 py-2 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors glass-effect multi-layer-glow interactive pulse-on-hover">
+                    <i class="fas fa-times mr-2"></i> إغلاق لوحة التحكم
+                </button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="card p-6 rounded-xl text-center multi-pulse interactive tilt-on-hover" style="animation-delay: 0s;">
+                    <div class="text-4xl font-bold text-purple-400 mb-4" id="adminTotalReports">2,450</div>
+                    <h3 class="text-xl font-semibold text-white">إجمالي البلاغات</h3>
+                </div>
+                <div class="card p-6 rounded-xl text-center multi-pulse interactive tilt-on-hover" style="animation-delay: 0.2s;">
+                    <div class="text-4xl font-bold text-emerald-400 mb-4" id="adminPendingReports">245</div>
+                    <h3 class="text-xl font-semibold text-white">البلاغات المعلقة</h3>
+                </div>
+                <div class="card p-6 rounded-xl text-center multi-pulse interactive tilt-on-hover" style="animation-delay: 0.4s;">
+                    <div class="text-4xl font-bold text-cyan-400 mb-4" id="adminTodayReports">32</div>
+                    <h3 class="text-xl font-semibold text-white">البلاغات اليوم</h3>
+                </div>
+            </div>
+            
+            <div class="card rounded-xl overflow-hidden mb-8 glass-effect">
+                <div class="p-6 border-b border-gray-800">
+                    <h2 class="text-xl font-bold text-white">البلاغات المعلقة</h2>
+                </div>
+                <div id="adminReportsList" class="p-6">
+                    <!-- سيتم ملء البلاغات هنا -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- مؤشر التحميل -->
+    <div id="loadingSpinner" class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 hidden">
+        <div class="text-center">
+            <div class="loader mb-4"></div>
+            <p class="text-white text-lg">جاري التحميل...</p>
+        </div>
+    </div>
+    
+    <!-- الإشعارات -->
+    <div id="notificationContainer" class="fixed top-20 right-4 z-50 space-y-2 max-w-sm"></div>
+    
+    <!-- اعتماد المصمم -->
+    <div class="designer-credit">
+        <span>تصميم: محمد حسن</span>
+    </div>
+
+    <script>
+        // البيانات الأولية
+        let reports = [
+            {
+                id: 1,
+                reporterName: 'أحمد محمد',
+                reporterPhone: '+963-11-123-4567',
+                category: 'sectarian_incitement',
+                description: 'منشور يحرض على العنف الطائفي في مجموعة فيسبوك',
+                location: 'https://facebook.com/post/123',
+                status: 'pending',
+                date: '2024-01-25T10:30:00Z',
+                image: null
+            },
+            {
+                id: 2,
+                reporterName: 'فاطمة علي',
+                reporterPhone: '+963-11-234-5678',
+                category: 'hate_speech',
+                description: 'تعليقات مسيئة تستهدف طائفة دينية محددة',
+                location: 'https://twitter.com/user/status/456',
+                status: 'pending',
+                date: '2024-01-24T15:20:00Z',
+                image: null
+            }
+        ];
+        
+        // كود الدخول إلى لوحة التحكم
+        const adminCode = 'savenet2024';
+        
+        // دوال الإدارة
+        function showNotification(message, type = 'info') {
+            const container = document.getElementById('notificationContainer');
+            const notification = document.createElement('div');
+            notification.className = 'notification bg-gray-800/90 rounded-xl shadow-lg overflow-hidden transition-all glass-effect';
+            notification.style.animation = 'slideIn 0.4s ease-out';
+            
+            let icon = 'info-circle';
+            let color = 'text-purple-400';
+            
+            switch(type) {
+                case 'success':
+                    icon = 'check-circle';
+                    color = 'text-emerald-400';
+                    break;
+                case 'error':
+                    icon = 'times-circle';
+                    color = 'text-rose-400';
+                    break;
+                case 'warning':
+                    icon = 'exclamation-triangle';
+                    color = 'text-amber-400';
+                    break;
+            }
+            
+            notification.innerHTML = `
+                <div class="flex items-start p-4">
+                    <div class="w-2 rounded-l-xl mr-3 ${color.replace('text-', 'bg-')}"></div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center">
+                                <i class="fas fa-${icon} ${color} mr-2"></i>
+                                <h4 class="font-bold text-white">${type === 'success' ? 'نجاح' : type === 'error' ? 'خطأ' : type === 'warning' ? 'تحذير' : 'معلومة'}</h4>
+                            </div>
+                            <button onclick="this.parentElement.parentElement.remove()" class="text-gray-400 hover:text-white">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <p class="mt-2 text-gray-300">${message}</p>
+                        <div class="mt-3 flex justify-between items-center">
+                            <span class="text-xs text-gray-500">الآن</span>
+                            <button onclick="this.parentElement.parentElement.parentElement.remove()" class="text-xs text-purple-400 hover:text-purple-300">
+                                إغلاق
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(notification);
+            
+            // إزالة الإشعار تلقائياً بعد 5 ثوانٍ
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 5000);
+        }
+        
+        // دوال العرض
+        function openInfoModal() {
+            document.getElementById('infoModal').classList.remove('hidden');
+            document.getElementById('infoModal').style.display = 'flex';
+        }
+        
+        function closeInfoModal() {
+            document.getElementById('infoModal').classList.add('hidden');
+            document.getElementById('infoModal').style.display = 'none';
+        }
+        
+        function openConfirmationModal() {
+            document.getElementById('confirmationModal').classList.remove('hidden');
+            document.getElementById('confirmationModal').style.display = 'flex';
+        }
+        
+        function closeConfirmationModal() {
+            document.getElementById('confirmationModal').classList.add('hidden');
+            document.getElementById('confirmationModal').style.display = 'none';
+        }
+        
+        function openAdminCodeModal() {
+            document.getElementById('adminCodeModal').classList.remove('hidden');
+            document.getElementById('adminCodeModal').style.display = 'flex';
+        }
+        
+        function closeAdminCodeModal() {
+            document.getElementById('adminCodeModal').classList.add('hidden');
+            document.getElementById('adminCodeModal').style.display = 'none';
+        }
+        
+        function openAdminPanel() {
+            document.getElementById('adminPanel').classList.remove('hidden');
+            document.getElementById('adminPanel').style.display = 'block';
+            loadAdminPanel();
+        }
+        
+        function closeAdminPanel() {
+            document.getElementById('adminPanel').classList.add('hidden');
+            document.getElementById('adminPanel').style.display = 'none';
+        }
+        
+        function showLoading() {
+            document.getElementById('loadingSpinner').classList.remove('hidden');
+        }
+        
+        function hideLoading() {
+            document.getElementById('loadingSpinner').classList.add('hidden');
+        }
+        
+        // دوال المصادقة
+        function verifyAdminCode() {
+            const code = document.getElementById('adminCode').value;
+            
+            if (!code) {
+                showNotification('يرجى إدخال كود الدخول', 'error');
+                return;
+            }
+            
+            if (code === adminCode) {
+                closeAdminCodeModal();
+                openAdminPanel();
+                showNotification('تم الدخول إلى لوحة التحكم بنجاح!', 'success');
+            } else {
+                showNotification('كود الدخول غير صحيح', 'error');
+            }
+        }
+        
+        // دوال التحديث
+        function updateStats() {
+            document.getElementById('totalReports').textContent = reports.length;
+            document.getElementById('totalReportsCount').textContent = reports.length;
+            document.getElementById('resolvedReportsCount').textContent = reports.filter(r => r.status === 'completed').length;
+            document.getElementById('pendingReportsCount').textContent = reports.filter(r => r.status === 'pending').length;
+            
+            const successRate = reports.length > 0 ? 
+                Math.round((reports.filter(r => r.status === 'completed').length / reports.length) * 100) : 
+                0;
+            document.getElementById('successRate').textContent = `${successRate}%`;
+        }
+        
+        // معالجة الأحداث
+        document.addEventListener('DOMContentLoaded', function() {
+            // إعداد معالجات الأحداث
+            document.getElementById('reportForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const reporterName = document.getElementById('reporterName').value;
+                const reporterPhone = document.getElementById('reporterPhone').value;
+                const category = document.getElementById('category').value;
+                const description = document.getElementById('description').value;
+                const location = document.getElementById('location').value;
+                const humanVerification = document.getElementById('humanVerification').checked;
+                
+                if (!reporterName || !reporterPhone || !category || !description || !location || !humanVerification) {
+                    showNotification('يرجى إدخال جميع الحقول المطلوبة', 'error');
+                    return;
+                }
+                
+                // تحقق من صحة الرقم (في تطبيق حقيقي، سيكون هذا تحققًا أكثر تعقيدًا)
+                if (!/^\+?963[1-9]\d{8}$/.test(reporterPhone)) {
+                    showNotification('يرجى إدخال رقم هاتف صحيح', 'error');
+                    return;
+                }
+                
+                // إنشاء بلاغ جديد
+                const newReport = {
+                    id: reports.length + 1,
+                    reporterName: reporterName,
+                    reporterPhone: reporterPhone,
+                    category: category,
+                    description: description,
+                    location: location,
+                    status: 'pending',
+                    date: new Date().toISOString(),
+                    image: null
+                };
+                
+                reports.push(newReport);
+                
+                // محاكاة إرسال البيانات إلى الخادم
+                showLoading();
+                setTimeout(() => {
+                    hideLoading();
+                    closeConfirmationModal();
+                    openConfirmationModal();
+                    updateStats();
+                }, 1500);
+            });
+            
+            document.getElementById('adminCodeForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                verifyAdminCode();
+            });
+            
+            document.getElementById('getStartedBtn').addEventListener('click', function() {
+                document.getElementById('reportForm').scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            document.getElementById('learnMoreBtn').addEventListener('click', function() {
+                document.getElementById('features').scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            document.getElementById('showDemoBtn').addEventListener('click', function() {
+                openInfoModal();
+            });
+            
+            // تفعيل تأثيرات الظهور عند التمرير
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('appeared');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            document.querySelectorAll('.appear, .hero-appear, .side-appear, .side-appear-reverse, .slow-appear, .fast-appear, .rotate-appear, .stagger-appear, .highlight-appear, .pulse-appear, .glow-appear').forEach(element => {
+                observer.observe(element);
+            });
+            
+            // تفعيل تأثيرات الظهور المتأخرة
+            setTimeout(() => {
+                document.querySelectorAll('.hero-appear').forEach(el => el.classList.add('appeared'));
+            }, 300);
+            
+            setTimeout(() => {
+                document.querySelectorAll('.side-appear, .side-appear-reverse').forEach(el => el.classList.add('appeared'));
+            }, 600);
+            
+            setTimeout(() => {
+                document.querySelectorAll('.slow-appear').forEach(el => el.classList.add('appeared'));
+            }, 900);
+            
+            setTimeout(() => {
+                document.querySelectorAll('.fast-appear').forEach(el => el.classList.add('appeared'));
+            }, 1200);
+            
+            // تفعيل تأثيرات الظهور المترابطة
+            document.querySelectorAll('.stagger-appear').forEach((el, index) => {
+                setTimeout(() => {
+                    el.classList.add('appeared');
+                }, 300 + index * 100);
+            });
+            
+            // تفعيل تأثيرات الظهور المهمة
+            setTimeout(() => {
+                document.querySelectorAll('.highlight-appear').forEach(el => el.classList.add('appeared'));
+            }, 500);
+            
+            // تفعيل تأثيرات الظهور مع الوميض
+            setTimeout(() => {
+                document.querySelectorAll('.pulse-appear').forEach(el => el.classList.add('appeared'));
+            }, 1000);
+            
+            // تفعيل تأثيرات الظهور مع الوميض
+            setTimeout(() => {
+                document.querySelectorAll('.glow-appear').forEach(el => el.classList.add('appeared'));
+            }, 1500);
+            
+            // إنشاء شبكة الخيوط
+            createThreadNetwork();
+            
+            // إنشاء نقاط متألقة
+            createParticles();
+            
+            // إعداد تفاعل شعار SaveNet لكشف كود الدخول
+            let clickCount = 0;
+            let lastClickTime = 0;
+            const shieldLogo = document.getElementById('shieldLogo');
+            
+            shieldLogo.addEventListener('click', function() {
+                const now = Date.now();
+                if (now - lastClickTime < 500) {
+                    clickCount++;
+                } else {
+                    clickCount = 1;
+                }
+                lastClickTime = now;
+                
+                if (clickCount >= 3) {
+                    openAdminCodeModal();
+                    clickCount = 0;
+                }
+            });
+            
+            // تفعيل التفاعلات مع العناصر
+            const interactiveElements = document.querySelectorAll('.interactive');
+            interactiveElements.forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 20px 25px -5px rgba(139, 92, 246, 0.2)';
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
+                });
+            });
+            
+            // تفعيل التفاعل مع الشعار
+            shieldLogo.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+            
+            shieldLogo.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+            
+            // تحديث الإحصائيات
+            updateStats();
+        });
+        
+        // دوال تأثيرات الخلفية
+        function createThreadNetwork() {
+            const container = document.getElementById('threadNetwork');
+            const threadNetwork = document.createElement('div');
+            threadNetwork.className = 'neon-thread-network-effect';
+            threadNetwork.style.zIndex = '-1';
+            container.appendChild(threadNetwork);
+            
+            // إنشاء نقاط عشوائية
+            const points = [];
+            const numPoints = 50;
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            
+            for (let i = 0; i < numPoints; i++) {
+                points.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5
+                });
+            }
+            
+            // رسم النقاط والخطوط
+            function draw() {
+                threadNetwork.innerHTML = '';
+                
+                // رسم النقاط
+                points.forEach(point => {
+                    const particle = document.createElement('div');
+                    particle.className = 'neon-thread-network-particles';
+                    particle.style.left = `${point.x}px`;
+                    particle.style.top = `${point.y}px`;
+                    threadNetwork.appendChild(particle);
+                });
+                
+                // رسم الخطوط بين النقاط القريبة
+                for (let i = 0; i < points.length; i++) {
+                    for (let j = i + 1; j < points.length; j++) {
+                        const dx = points[i].x - points[j].x;
+                        const dy = points[i].y - points[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < 150) {
+                            const line = document.createElement('div');
+                            line.className = 'neon-thread-network-lines';
+                            line.style.width = `${distance}px`;
+                            line.style.height = '1px';
+                            line.style.left = `${points[i].x}px`;
+                            line.style.top = `${points[i].y}px`;
+                            line.style.transform = `rotate(${Math.atan2(dy, dx)}rad)`;
+                            threadNetwork.appendChild(line);
+                        }
+                    }
+                }
+                
+                // تحديث مواقع النقاط
+                points.forEach(point => {
+                    point.x += point.vx;
+                    point.y += point.vy;
+                    
+                    // الارتداد عن الحواف
+                    if (point.x < 0 || point.x > width) point.vx *= -1;
+                    if (point.y < 0 || point.y > height) point.vy *= -1;
+                });
+                
+                requestAnimationFrame(draw);
+            }
+            
+            draw();
+        }
+        
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const numParticles = 100;
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            
+            for (let i = 0; i < numParticles; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particles-glow';
+                
+                // خصائص عشوائية
+                const size = Math.random() * 5 + 2;
+                const x = Math.random() * width;
+                const y = Math.random() * height;
+                const duration = Math.random() * 10 + 5;
+                const delay = Math.random() * 5;
+                
+                // تطبيق الخصائص
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+                particle.style.animation = `pulse ${duration}s ${delay}s infinite`;
+                
+                // تحديد اللون
+                const colors = ['var(--neon-purple)', 'var(--neon-blue)', 'var(--neon-pink)'];
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // دوال لوحة التحكم
+        function loadAdminPanel() {
+            document.getElementById('adminTotalReports').textContent = reports.length;
+            document.getElementById('adminPendingReports').textContent = reports.filter(r => r.status === 'pending').length;
+            
+            // محاكاة البلاغات اليومية
+            const today = new Date().toISOString().split('T')[0];
+            const todayReports = reports.filter(r => r.date.startsWith(today));
+            document.getElementById('adminTodayReports').textContent = todayReports.length;
+            
+            // عرض البلاغات المعلقة
+            const reportsList = document.getElementById('adminReportsList');
+            const pendingReports = reports.filter(r => r.status === 'pending');
+            
+            if (pendingReports.length === 0) {
+                reportsList.innerHTML = `
+                    <div class="text-center py-12 bg-gray-800/50 rounded-xl glass-effect">
+                        <i class="fas fa-inbox text-5xl text-gray-400 mb-4"></i>
+                        <h3 class="text-lg font-medium text-white mb-2">لا توجد بلاغات معلقة</h3>
+                        <p class="text-gray-500">جميع البلاغات تم مراجعتها</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            reportsList.innerHTML = `
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-800/50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">الرقم</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">الاسم</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">الفئة</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">التاريخ</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">الحالة</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-800">
+                            ${pendingReports.map(report => `
+                                <tr class="hover:bg-gray-800/50 transition-colors multi-layer-glow">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">#${report.id}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-white">${report.reporterName}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-white">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getCategoryColor(report.category)}">
+                                            ${getCategoryName(report.category)}
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-white">${formatDate(report.date)}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(report.status)}">
+                                            ${getStatusName(report.status)}
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <div class="flex space-x-2">
+                                            <button onclick="viewReport(${report.id})" 
+                                                    class="text-purple-400 hover:text-purple-300 transition-colors">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button onclick="markAsCompleted(${report.id})" 
+                                                    class="text-emerald-400 hover:text-emerald-300 transition-colors">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                            <button onclick="rejectReport(${report.id})" 
+                                                    class="text-rose-400 hover:text-rose-300 transition-colors">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+        
+        function getCategoryName(category) {
+            const names = {
+                'sectarian_incitement': 'تحريض طائفي',
+                'hate_speech': 'خطاب كراهية',
+                'misinformation': 'معلومات مضللة',
+                'harassment': 'مضايقة',
+                'extremism': 'تطرف',
+                'cyberbullying': 'تنمر إلكتروني',
+                'fake_accounts': 'حسابات وهمية',
+                'violence_incitement': 'تحريض على العنف',
+                'other': 'أخرى'
+            };
+            return names[category] || category;
+        }
+        
+        function getCategoryColor(category) {
+            const colors = {
+                'sectarian_incitement': 'bg-purple-900/50 text-purple-300',
+                'hate_speech': 'bg-rose-900/50 text-rose-300',
+                'misinformation': 'bg-amber-900/50 text-amber-300',
+                'harassment': 'bg-orange-900/50 text-orange-300',
+                'extremism': 'bg-indigo-900/50 text-indigo-300',
+                'cyberbullying': 'bg-pink-900/50 text-pink-300',
+                'fake_accounts': 'bg-cyan-900/50 text-cyan-300',
+                'violence_incitement': 'bg-emerald-900/50 text-emerald-300',
+                'other': 'bg-gray-800 text-gray-300'
+            };
+            return colors[category] || 'bg-gray-800 text-gray-300';
+        }
+        
+        function getStatusName(status) {
+            const names = {
+                'pending': 'معلق',
+                'approved': 'موافق عليه',
+                'rejected': 'مرفوض',
+                'completed': 'مكتمل',
+                'execution_submitted': 'في انتظار التحقق',
+                'almost_completed': 'شبه مكتمل'
+            };
+            return names[status] || status;
+        }
+        
+        function getStatusColor(status) {
+            const colors = {
+                'pending': 'text-amber-400 bg-amber-900/50',
+                'approved': 'text-emerald-400 bg-emerald-900/50',
+                'rejected': 'text-rose-400 bg-rose-900/50',
+                'completed': 'text-purple-400 bg-purple-900/50',
+                'execution_submitted': 'text-cyan-400 bg-cyan-900/50',
+                'almost_completed': 'text-indigo-400 bg-indigo-900/50'
+            };
+            return colors[status] || 'text-gray-400 bg-gray-800';
+        }
+        
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ar-EG', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+        
+        // دوال التفاعل مع البلاغات
+        function markAsCompleted(reportId) {
+            const report = reports.find(r => r.id === reportId);
+            if (!report) {
+                showNotification('البلاغ غير موجود', 'error');
+                return;
+            }
+            
+            report.status = 'completed';
+            showNotification('تم تحديد البلاغ كمكتمل بنجاح!', 'success');
+            loadAdminPanel();
+            updateStats();
+        }
+        
+        function rejectReport(reportId) {
+            const report = reports.find(r => r.id === reportId);
+            if (!report) {
+                showNotification('البلاغ غير موجود', 'error');
+                return;
+            }
+            
+            const reason = prompt('يرجى تحديد سبب رفض البلاغ:', 'البلاغ غير ذي صلة');
+            if (!reason) return;
+            
+            report.status = 'rejected';
+            report.rejectionReason = reason;
+            
+            showNotification('تم رفض البلاغ بنجاح!', 'success');
+            loadAdminPanel();
+            updateStats();
+        }
+        
+        function viewReport(reportId) {
+            const report = reports.find(r => r.id === reportId);
+            if (!report) {
+                showNotification('البلاغ غير موجود', 'error');
+                return;
+            }
+            
+            // إنشاء نافذة تفصيلية للبلاغ
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4 overflow-y-auto';
+            modal.id = 'reportDetailModal';
+            
+            modal.innerHTML = `
+                <div class="card max-w-4xl w-full mx-auto rounded-xl overflow-hidden relative glass-effect interactive tilt-on-hover">
+                    <div class="absolute top-4 right-4 z-10">
+                        <button onclick="closeReportDetailModal()" class="text-gray-400 hover:text-white">
+                            <i class="fas fa-times text-2xl"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="p-6 bg-gradient-to-r from-gray-900/70 to-gray-800/70">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getCategoryColor(report.category)} mb-2">
+                                    ${getCategoryName(report.category)}
+                                </span>
+                                <h2 class="text-2xl font-bold text-white">
+                                    بلاغ رقم #${report.id}
+                                </h2>
+                                <p class="text-sm text-gray-400 mt-1">
+                                    تم الإرسال في ${formatDate(report.date)}
+                                </p>
+                            </div>
+                            <span class="px-2 py-1 bg-amber-900/50 text-amber-300 text-xs rounded-full">
+                                <i class="fas fa-clock mr-1"></i> مُعَد للمراجعة
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6 border-t border-gray-800">
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                            <div class="lg:col-span-2 space-y-6">
+                                <div class="glass-effect p-4 rounded-xl">
+                                    <h3 class="text-lg font-semibold text-white mb-2 flex items-center">
+                                        <i class="fas fa-user mr-2 text-purple-400"></i>
+                                        معلومات المُبلّغ
+                                    </h3>
+                                    <div class="bg-gray-800/50 rounded-lg p-4 glass-effect">
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <p class="text-sm text-gray-500">الاسم</p>
+                                                <p class="font-medium text-white">${report.reporterName}</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-sm text-gray-500">رقم الهاتف</p>
+                                                <p class="font-medium text-white">${report.reporterPhone}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="glass-effect p-4 rounded-xl">
+                                    <h3 class="text-lg font-semibold text-white mb-2 flex items-center">
+                                        <i class="fas fa-info-circle mr-2 text-purple-400"></i>
+                                        تفاصيل البلاغ
+                                    </h3>
+                                    <p class="text-gray-300 mb-4">
+                                        ${report.description}
+                                    </p>
+                                    
+                                    <div class="bg-gray-800/50 rounded-lg p-4 glass-effect">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-link mr-2 text-purple-400"></i>
+                                            <a href="${report.location}" target="_blank" class="text-purple-400 hover:text-purple-300 break-all">
+                                                ${report.location}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-6">
+                                <div class="glass-effect p-4 rounded-xl">
+                                    <h3 class="text-lg font-semibold text-white mb-3 flex items-center">
+                                        <i class="fas fa-history mr-2 text-emerald-400"></i>
+                                        سجل الحالة
+                                    </h3>
+                                    <div class="bg-purple-900/20 p-4 rounded-lg glass-effect">
+                                        <div class="flex">
+                                            <div class="flex flex-col items-center mr-4">
+                                                <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white">
+                                                    <i class="fas fa-paper-plane"></i>
+                                                </div>
+                                                <div class="w-px h-full bg-gray-700"></div>
+                                            </div>
+                                            <div class="pb-4">
+                                                <p class="font-medium text-white">تم الإرسال</p>
+                                                <p class="text-sm text-gray-400">${formatDate(report.date)}</p>
+                                                <p class="text-sm mt-1">${report.reporterName}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex flex-col space-y-2">
+                                    <button onclick="markAsCompleted(${report.id}); closeReportDetailModal()" 
+                                            class="btn-primary px-6 py-2 rounded-lg font-medium multi-layer-glow interactive pulse-on-hover">
+                                        <i class="fas fa-check-circle mr-2"></i> اعتماد البلاغ
+                                    </button>
+                                    <button onclick="rejectReport(${report.id}); closeReportDetailModal()" 
+                                            class="px-6 py-2 bg-rose-900 text-white rounded-lg hover:bg-rose-800 transition-colors glass-effect interactive pulse-on-hover">
+                                        <i class="fas fa-times-circle mr-2"></i> رفض البلاغ
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // إضافة تأثير الظهور
+            setTimeout(() => {
+                modal.querySelector('.card').style.transform = 'translateY(0)';
+                modal.querySelector('.card').style.opacity = '1';
+            }, 10);
+        }
+        
+        function closeReportDetailModal() {
+            const modal = document.getElementById('reportDetailModal');
+            if (modal) {
+                modal.querySelector('.card').style.transform = 'translateY(20px)';
+                modal.querySelector('.card').style.opacity = '0';
+                
+                setTimeout(() => {
+                    document.body.removeChild(modal);
+                }, 300);
+            }
+        }
+    </script>
+</body>
+</html>
